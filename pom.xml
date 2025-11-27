@@ -8,6 +8,7 @@
     <module>microservice-productos</module>
     <module>microservice-ordenes</module>
     <module>microservice-pagos</module>
+    <module>microservice-carrito</module>
   </modules>
 
   <parent>
