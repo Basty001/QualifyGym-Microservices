@@ -27,7 +27,9 @@ public class PagoService {
         if (pago.getFechaPago() == null) {
             pago.setFechaPago(LocalDateTime.now());
         }
-        return pagoRepository.save(pago);
+        Pago saved = pagoRepository.save(pago);
+        pagoRepository.flush(); // Forzar el flush para asegurar que se guarde
+        return saved;
     }
 
     public void delete(int id_pago){

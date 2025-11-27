@@ -69,14 +69,51 @@ public class UsuarioController {
                 return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
             }
 
+            // Validar que los campos requeridos no estén vacíos
+            if (usuarioDTO.getUsername() == null || usuarioDTO.getUsername().trim().isEmpty()) {
+                Map<String,String> error = new HashMap<>();
+                error.put("message","El username es obligatorio");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+            }
+            if (usuarioDTO.getEmail() == null || usuarioDTO.getEmail().trim().isEmpty()) {
+                Map<String,String> error = new HashMap<>();
+                error.put("message","El email es obligatorio");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+            }
+            if (usuarioDTO.getPassword() == null || usuarioDTO.getPassword().trim().isEmpty()) {
+                Map<String,String> error = new HashMap<>();
+                error.put("message","La contraseña es obligatoria");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+            }
+            
+            // Validar formato del teléfono solo si está presente
+            if (usuarioDTO.getPhone() != null && !usuarioDTO.getPhone().trim().isEmpty()) {
+                String phone = usuarioDTO.getPhone().trim();
+                // Validar formato: 8-15 dígitos, puede empezar con +
+                if (!phone.matches("^\\+?[0-9]{8,15}$")) {
+                    Map<String,String> error = new HashMap<>();
+                    error.put("message","El teléfono debe tener formato válido: 8-15 dígitos, puede empezar con + (ejemplo: +56912345678 o 912345678)");
+                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+                }
+            }
+            
             Usuario usuario = new Usuario();
-            usuario.setUsername(usuarioDTO.getUsername());
-            usuario.setEmail(usuarioDTO.getEmail());
-            usuario.setPhone(usuarioDTO.getPhone());
+            usuario.setUsername(usuarioDTO.getUsername().trim());
+            usuario.setEmail(usuarioDTO.getEmail().trim().toLowerCase());
+            // Si el teléfono está vacío o es null, se guarda como null
+            usuario.setPhone(usuarioDTO.getPhone() != null && !usuarioDTO.getPhone().trim().isEmpty() 
+                ? usuarioDTO.getPhone().trim() : null);
             usuario.setPassword(usuarioDTO.getPassword());
-            usuario.setRolId(usuarioDTO.getRolId());
+            usuario.setRolId(usuarioDTO.getRolId() > 0 ? usuarioDTO.getRolId() : 2); // Default rol 2 (Usuario)
         
             Usuario usuarioGuardado = usuarioService.save(usuario);
+            
+            // Verificar que se guardó correctamente
+            if (usuarioGuardado.getId_usuario() == 0) {
+                Map<String,String> error = new HashMap<>();
+                error.put("message","Error al guardar el usuario");
+                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
+            }
         
             UsuarioDTO responseDTO = new UsuarioDTO();
             responseDTO.setId_usuario(usuarioGuardado.getId_usuario());
@@ -97,6 +134,11 @@ public class UsuarioController {
             Map<String,String> error = new HashMap<>();
             error.put("message","Error de integridad de datos: " + e.getMessage());
             return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
+        } catch(Exception e){
+            Map<String,String> error = new HashMap<>();
+            error.put("message","Error al crear usuario: " + e.getMessage());
+            e.printStackTrace(); // Para debugging
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(error);
         }
     }
 

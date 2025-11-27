@@ -37,11 +37,15 @@ public class CarritoService {
             carrito.setFechaCreacion(LocalDateTime.now());
         }
         carrito.setFechaActualizacion(LocalDateTime.now());
-        return carritoRepository.save(carrito);
+        Carrito saved = carritoRepository.save(carrito);
+        carritoRepository.flush(); // Forzar el flush para asegurar que se guarde
+        return saved;
     }
     
     public CarritoItem saveItem(CarritoItem item){
-        return carritoItemRepository.save(item);
+        CarritoItem saved = carritoItemRepository.save(item);
+        carritoItemRepository.flush(); // Forzar el flush para asegurar que se guarde
+        return saved;
     }
     
     public void deleteItem(int id_item){

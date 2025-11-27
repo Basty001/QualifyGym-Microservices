@@ -29,10 +29,25 @@ public class UsuarioService {
     }
 
     public Usuario save(Usuario usuario){
-        if (usuario.getPassword() != null && !usuario.getPassword().isEmpty()) {
-            usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+        try {
+            if (usuario.getPassword() != null && !usuario.getPassword().isEmpty()) {
+                // Solo codificar si no está ya codificado (no empieza con $2a$)
+                if (!usuario.getPassword().startsWith("$2a$")) {
+                    usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
+                }
+            }
+            Usuario saved = usuarioRepository.save(usuario);
+            usuarioRepository.flush(); // Forzar el flush para asegurar que se guarde
+            // Verificar que se guardó correctamente
+            if (saved.getId_usuario() > 0) {
+                System.out.println("Usuario guardado con ID: " + saved.getId_usuario());
+            }
+            return saved;
+        } catch (Exception e) {
+            System.err.println("Error al guardar usuario: " + e.getMessage());
+            e.printStackTrace();
+            throw e;
         }
-        return usuarioRepository.save(usuario);
     }
 
     public void delete(int id_usuario){

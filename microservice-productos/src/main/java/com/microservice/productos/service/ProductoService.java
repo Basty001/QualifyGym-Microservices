@@ -29,7 +29,9 @@ public class ProductoService {
     }
 
     public Producto save(Producto producto){
-        return productoRepository.save(producto);
+        Producto saved = productoRepository.save(producto);
+        productoRepository.flush(); // Forzar el flush para asegurar que se guarde
+        return saved;
     }
 
     public void delete(int id_producto){

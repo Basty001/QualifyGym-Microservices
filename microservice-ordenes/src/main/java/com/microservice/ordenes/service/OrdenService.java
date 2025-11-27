@@ -28,7 +28,9 @@ public class OrdenService {
             orden.setFechaCreacion(LocalDateTime.now());
         }
         orden.setFechaActualizacion(LocalDateTime.now());
-        return ordenRepository.save(orden);
+        Orden saved = ordenRepository.save(orden);
+        ordenRepository.flush(); // Forzar el flush para asegurar que se guarde
+        return saved;
     }
 
     public void delete(int id_orden){
