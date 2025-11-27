@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/v1/ordenes")
+@CrossOrigin(origins = "*")
 public class OrdenController {
     @Autowired
     private OrdenService ordenService;
@@ -94,6 +95,20 @@ public class OrdenController {
             return ResponseEntity.noContent().build();
         }catch(Exception ex){
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/usuario/{usuarioId}")
+    public ResponseEntity<?> getOrdenesByUsuario(@PathVariable Integer usuarioId){
+        try{
+            List<Orden> ordenes = ordenService.findByUsuarioId(usuarioId);
+            return ResponseEntity.ok().body(ordenes);
+        } catch(Exception ex){
+            Map<String,String> errorBody = new HashMap<>();
+            errorBody.put("message","Error al obtener órdenes del usuario: " + ex.getMessage());
+            errorBody.put("status","500");
+            errorBody.put("timestamp",LocalDateTime.now().toString());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorBody);
         }
     }
 }

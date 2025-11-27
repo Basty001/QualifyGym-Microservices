@@ -18,6 +18,7 @@ import java.time.LocalDateTime;
 
 @RestController
 @RequestMapping("/api/v1/pagos")
+@CrossOrigin(origins = "*")
 public class PagoController {
     @Autowired
     private PagoService pagoService;
@@ -104,6 +105,20 @@ public class PagoController {
             return ResponseEntity.noContent().build();
         }catch(Exception ex){
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    @GetMapping("/usuario/{usuarioId}")
+    public ResponseEntity<?> getPagosByUsuario(@PathVariable Integer usuarioId){
+        try{
+            List<Pago> pagos = pagoService.findByUsuarioId(usuarioId);
+            return ResponseEntity.ok().body(pagos);
+        } catch(Exception ex){
+            Map<String,String> errorBody = new HashMap<>();
+            errorBody.put("message","Error al obtener pagos del usuario: " + ex.getMessage());
+            errorBody.put("status","500");
+            errorBody.put("timestamp",LocalDateTime.now().toString());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorBody);
         }
     }
 }
