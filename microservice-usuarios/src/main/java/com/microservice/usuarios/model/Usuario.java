@@ -29,7 +29,8 @@ public class Usuario {
     @Email(message="El formato del correo no es válido")
     private String email;
 
-    @Column(name="phone", unique=true, nullable=true, length=20)
+    @Column(name="phone", unique=true, nullable=false, length=20)
+    @NotBlank(message = "El teléfono es obligatorio")
     @Pattern(regexp = "^\\+?[0-9]{8,15}$", message = "El teléfono debe tener formato válido (8-15 dígitos, puede empezar con +)", flags = Pattern.Flag.CASE_INSENSITIVE)
     private String phone;
 

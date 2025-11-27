@@ -85,24 +85,24 @@ public class UsuarioController {
                 error.put("message","La contraseña es obligatoria");
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
             }
+            if (usuarioDTO.getPhone() == null || usuarioDTO.getPhone().trim().isEmpty()) {
+                Map<String,String> error = new HashMap<>();
+                error.put("message","El teléfono es obligatorio");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+            }
             
-            // Validar formato del teléfono solo si está presente
-            if (usuarioDTO.getPhone() != null && !usuarioDTO.getPhone().trim().isEmpty()) {
-                String phone = usuarioDTO.getPhone().trim();
-                // Validar formato: 8-15 dígitos, puede empezar con +
-                if (!phone.matches("^\\+?[0-9]{8,15}$")) {
-                    Map<String,String> error = new HashMap<>();
-                    error.put("message","El teléfono debe tener formato válido: 8-15 dígitos, puede empezar con + (ejemplo: +56912345678 o 912345678)");
-                    return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
-                }
+            // Validar formato del teléfono
+            String phone = usuarioDTO.getPhone().trim();
+            if (!phone.matches("^\\+?[0-9]{8,15}$")) {
+                Map<String,String> error = new HashMap<>();
+                error.put("message","El teléfono debe tener formato válido: 8-15 dígitos, puede empezar con + (ejemplo: +56912345678 o 912345678)");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
             }
             
             Usuario usuario = new Usuario();
             usuario.setUsername(usuarioDTO.getUsername().trim());
             usuario.setEmail(usuarioDTO.getEmail().trim().toLowerCase());
-            // Si el teléfono está vacío o es null, se guarda como null
-            usuario.setPhone(usuarioDTO.getPhone() != null && !usuarioDTO.getPhone().trim().isEmpty() 
-                ? usuarioDTO.getPhone().trim() : null);
+            usuario.setPhone(phone);
             usuario.setPassword(usuarioDTO.getPassword());
             usuario.setRolId(usuarioDTO.getRolId() > 0 ? usuarioDTO.getRolId() : 2); // Default rol 2 (Usuario)
         
