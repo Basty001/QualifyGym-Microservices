@@ -1,7 +1,7 @@
-package com.microservice.ordenes.service;
+package com.qualifygym.ordenes.service;
 
-import com.microservice.ordenes.model.Orden;
-import com.microservice.ordenes.repository.OrdenRepository;
+import com.qualifygym.ordenes.model.Orden;
+import com.qualifygym.ordenes.repository.OrdenRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

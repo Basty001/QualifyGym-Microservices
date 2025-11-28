@@ -1,8 +1,8 @@
-package com.microservice.productos.controller;
+package com.qualifygym.productos.controller;
 
-import com.microservice.productos.model.Producto;
-import com.microservice.productos.service.ProductoService;
-import com.microservice.productos.dto.ProductoDTO;
+import com.qualifygym.productos.model.Producto;
+import com.qualifygym.productos.service.ProductoService;
+import com.qualifygym.productos.dto.ProductoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;

@@ -1,8 +1,8 @@
-package com.microservice.ordenes.controller;
+package com.qualifygym.ordenes.controller;
 
-import com.microservice.ordenes.model.Orden;
-import com.microservice.ordenes.service.OrdenService;
-import com.microservice.ordenes.dto.OrdenDTO;
+import com.qualifygym.ordenes.model.Orden;
+import com.qualifygym.ordenes.service.OrdenService;
+import com.qualifygym.ordenes.dto.OrdenDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

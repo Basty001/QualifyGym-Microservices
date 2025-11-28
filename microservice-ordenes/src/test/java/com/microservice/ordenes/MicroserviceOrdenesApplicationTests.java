@@ -1,10 +1,10 @@
-package com.microservice.ordenes;
+package com.qualifygym.ordenes;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MicroserviceOrdenesApplicationTests {
+class OrdenesApplicationTests {
 	@Test
 	void contextLoads() {
 	}

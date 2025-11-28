@@ -1,10 +1,10 @@
-package com.microservice.productos;
+package com.qualifygym.productos;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MicroserviceProductosApplicationTests {
+class ProductosApplicationTests {
 
 	@Test
 	void contextLoads() {

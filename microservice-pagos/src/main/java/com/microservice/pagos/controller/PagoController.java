@@ -1,8 +1,8 @@
-package com.microservice.pagos.controller;
+package com.qualifygym.pagos.controller;
 
-import com.microservice.pagos.model.Pago;
-import com.microservice.pagos.service.PagoService;
-import com.microservice.pagos.dto.PagoDTO;
+import com.qualifygym.pagos.model.Pago;
+import com.qualifygym.pagos.service.PagoService;
+import com.qualifygym.pagos.dto.PagoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

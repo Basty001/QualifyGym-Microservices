@@ -1,4 +1,4 @@
-package com.microservice.ordenes.model;
+package com.qualifygym.ordenes.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;

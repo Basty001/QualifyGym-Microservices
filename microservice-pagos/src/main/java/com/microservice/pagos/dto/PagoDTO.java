@@ -1,4 +1,4 @@
-package com.microservice.pagos.dto;
+package com.qualifygym.pagos.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

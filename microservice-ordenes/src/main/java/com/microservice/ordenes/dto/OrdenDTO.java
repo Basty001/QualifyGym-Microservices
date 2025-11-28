@@ -1,4 +1,4 @@
-package com.microservice.ordenes.dto;
+package com.qualifygym.ordenes.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

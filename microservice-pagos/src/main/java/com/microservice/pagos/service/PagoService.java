@@ -1,7 +1,7 @@
-package com.microservice.pagos.service;
+package com.qualifygym.pagos.service;
 
-import com.microservice.pagos.model.Pago;
-import com.microservice.pagos.repository.PagoRepository;
+import com.qualifygym.pagos.model.Pago;
+import com.qualifygym.pagos.repository.PagoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

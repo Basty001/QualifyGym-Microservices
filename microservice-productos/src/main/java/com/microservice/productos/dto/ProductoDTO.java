@@ -1,4 +1,4 @@
-package com.microservice.productos.dto;
+package com.qualifygym.productos.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,4 +1,4 @@
-package com.microservice.pagos.model;
+package com.qualifygym.pagos.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;

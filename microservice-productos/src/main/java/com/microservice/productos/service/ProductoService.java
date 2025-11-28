@@ -1,7 +1,7 @@
-package com.microservice.productos.service;
+package com.qualifygym.productos.service;
 
-import com.microservice.productos.model.Producto;
-import com.microservice.productos.repository.ProductoRepository;
+import com.qualifygym.productos.model.Producto;
+import com.qualifygym.productos.repository.ProductoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

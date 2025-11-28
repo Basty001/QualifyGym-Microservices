@@ -1,12 +1,12 @@
-package com.microservice.ordenes;
+package com.qualifygym.ordenes;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MicroserviceOrdenesApplication {
+public class OrdenesApplication {
 	public static void main(String[] args) {
-		SpringApplication.run(MicroserviceOrdenesApplication.class, args);
+		SpringApplication.run(OrdenesApplication.class, args);
 	}
 }
 

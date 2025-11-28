@@ -1,4 +1,4 @@
-package com.microservice.productos.model;
+package com.qualifygym.productos.model;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;

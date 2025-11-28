@@ -1,6 +1,6 @@
-package com.microservice.ordenes.repository;
+package com.qualifygym.ordenes.repository;
 
-import com.microservice.ordenes.model.Orden;
+import com.qualifygym.ordenes.model.Orden;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;

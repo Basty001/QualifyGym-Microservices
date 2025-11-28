@@ -1,6 +1,6 @@
-package com.microservice.productos.repository;
+package com.qualifygym.productos.repository;
 
-import com.microservice.productos.model.Producto;
+import com.qualifygym.productos.model.Producto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import java.util.List;
